@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'AdihausDIN';
+  src: url('./assets/fonts/adihausdin_cn.tff') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AdihausDIN';
+  src: url('./assets/fonts/adihausdin_bold.otf') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+  
+/* Bütün sayt üçün default font */
+* {
+  font-family: 'AdihausDIN', sans-serif;
+}
+
+@import "tailwindcss"
