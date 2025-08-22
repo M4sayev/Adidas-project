@@ -8,9 +8,9 @@ const Home = () => {
       <div className="md:pt-[130px] lg:pt-[140px] w-full">
         <div className="relative w-full h-[500px] md:h-[500px] lg:h-[600px] overflow-hidden">
           <img
-            src="https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            src="/WOmen.avif"
             alt="Banner"
-            className="w-full h-full object-cover object-right md:object-center"
+            className="w-full h-full object-center lg:object:cover object-right md:object-center"
           />
           
           {/* Overlay content */}
@@ -27,14 +27,14 @@ const Home = () => {
             </p>
             
             {/* Categories - Şaquli sıralama */}
-            <div className="flex flex-row gap-5">
-              {["men", "women", "kids"].map((cat) => (
+            <div className="flex flex-row gap-3">
+              {["women", "men", "kids"].map((cat) => (
                 <Link
                   key={cat}
                   to={`/${cat}`}
-                  className="flex items-center px-2 py-1 bg-white text-black font-bold text-xs md:text-sm lg:text-base group hover:bg-gray-100 transition-colors"
+                  className="flex items-center border px-2 py-1 bg-white text-black font-bold text-xs md:text-sm lg:text-base group hover:bg-gray-100 transition-colors"
                 >
-                  SHOP {cat.toUpperCase()}
+                   {cat.toUpperCase()}
                   <svg
                     className="ml-2 w-5 h-5 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform"
                     viewBox="0 0 32 32"

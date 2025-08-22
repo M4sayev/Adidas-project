@@ -7,12 +7,12 @@ export const newsApi = createApi({
     prepareHeaders: (headers) => {
       const token = localStorage.getItem("token");
       if (token) {
-        headers.set("Authorization", `Bearer ${token}`);
+        headers.append("Authorization", `Bearer ${token}`);
       }
       return headers;
     },
   }),
-  tagTypes: ["Category", "Product", "Basket"],
+  tagTypes: ["Category", "Product"],
   endpoints: (builder) => ({
     // ---------- Auth ----------
     login: builder.mutation({
@@ -89,17 +89,9 @@ export const newsApi = createApi({
     }),
     addToBasket: builder.mutation({
       query: (data) => ({
-        url: "/basket",
-        method: "POST",
-        body: data, // { productId, quantity }
-      }),
-      invalidatesTags: ["Basket"],
-    }),
-    updateBasketItem: builder.mutation({
-      query: ({ id, ...data }) => ({
         url: `/basket/${id}`,
-        method: "PATCH",
-        body: data, // { quantity }
+        method: "POST",
+        body: {color,size,quantity},
       }),
       invalidatesTags: ["Basket"],
     }),

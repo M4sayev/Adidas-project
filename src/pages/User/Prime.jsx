@@ -7,7 +7,7 @@ const Prime = () => {
       <div className="flex flex-col justify-center items-center w-full gap-4">
         <img
           className="font-bold "
-          src="/public/prime.png"
+          src="/prime.png"
           alt="Prime Logo"
         />
 

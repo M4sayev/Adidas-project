@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAddCategoryMutation, useGetCategoriesQuery } from '../../../store/newsApi'
 import { toast } from 'react-toastify'
 
@@ -10,7 +10,7 @@ const AddCategory = ({ setOpen }) => {
   const [addCategory] = useAddCategoryMutation()
   const { data: categories, error, isLoading } = useGetCategoriesQuery()
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (categories) {
       console.log('Categories data:', categories)
       console.log('Categories array length:', categories.length)

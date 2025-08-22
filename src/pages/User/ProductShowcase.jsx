@@ -70,11 +70,11 @@ const ProductShowcase = () => {
         {maxSlides > 0 && (
           <>
             <button onClick={() => setCurrentSlide(currentSlide <= 0 ? maxSlides : currentSlide - 1)}
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow z-10">
+              className="absolute left-1 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow z-10">
               <ChevronLeft />
             </button>
             <button onClick={() => setCurrentSlide(currentSlide >= maxSlides ? 0 : currentSlide + 1)}
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow z-10">
+              className="absolute right-1 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow z-10">
               <ChevronRight />
             </button>
           </>
@@ -96,7 +96,7 @@ const ProductShowcase = () => {
                 <img src={product.image} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
               </div>
               <div className="p-4">
-                <h3 className="font-semibold text-gray-900 mb-1">{product.name}</h3>
+                 <h3 className="font-semibold text-gray-900 mb-1">{product.name}</h3>
                 <p className="text-sm text-gray-500">{product.category}</p>
                 <span className="text-lg font-bold text-gray-900">{product.price}</span>
               </div>

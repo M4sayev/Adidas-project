@@ -46,7 +46,7 @@ const Information = () => {
         {/* Logo */}
         <div className="mt-8 flex justify-center">
           <img
-            src="../../../public/w_logo.png"
+            src="/w_logo.png"
             alt="adidas logo"
             className="w-10"
           />

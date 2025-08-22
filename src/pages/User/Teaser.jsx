@@ -1,29 +1,30 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const products = [
   {
     title: "SAMBA",
     description: "The cheetah print Samba is back.",
-    image: "/public/samba.avif",
-    link: "/samba", // klikləyəndə gedəcəyi səhifə
+    image: "/samba.avif",
+    link: "/category/146", // klikləyəndə gedəcəyi səhifə
   },
   {
     title: "TEAMGEIST",
     description: "Heritage soccer recut for today.",
-    image: "/public/yamal.avif",
-    link: "/teamgeist",
+    image: "/yamal.avif",
+    link: "/category/148",
   },
   {
     title: "ADIZERO EVO SL",
     description: "Feel fast. In all aspects of life.",
-    image: "/public/messi.avif",
-    link: "/adizero",
+    image: "/messi.avif",
+    link: "/category/97",
   },
   {
     title: "Y-3 TENNIS",
     description: "As worn by Jessica Pegula.",
-    image: "/public/y-3.jpg",
-    link: "/y3-tennis",
+    image: "/y-3.jpg",
+    link: "/category/152",
   },
 ];
 
@@ -31,10 +32,10 @@ const Teaser = () => {
   return (
     <div className="flex flex-wrap gap-6 justify-center pt-16 pb-6 px-10">
       {products.map((product, index) => (
-        <a
+        <Link
           key={index}
-          href={product.link} // link burda
-          className="bg-white overflow-hidden w-64 md:w-72 lg:w-80 border border-transparent hover:border-black transition-all duration-300 rounded-lg"
+          to={product.link} // link burda
+          className="bg-white p-0.5 overflow-hidden w-64 md:w-72 lg:w-80 border border-transparent hover:border-black transition-all duration-300 "
         >
           {/* Şəkilin proporsiyasını 3:4 saxlamaq üçün relative + pb */}
           <div className="relative pb-[140%]">
@@ -51,7 +52,7 @@ const Teaser = () => {
               SHOP NOW
             </span>
           </div>
-        </a>
+        </Link>
       ))}
     </div>
   );

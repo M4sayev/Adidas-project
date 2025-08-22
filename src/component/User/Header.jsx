@@ -90,7 +90,7 @@ const Header = () => {
     }));
   };
 
-  // Hover handlers with delay for better UX
+
   const handleCategoryMouseEnter = (categoryId) => {
     if (hoverTimeout) {
       clearTimeout(hoverTimeout);
@@ -102,7 +102,7 @@ const Header = () => {
   const handleCategoryMouseLeave = () => {
     const timeout = setTimeout(() => {
       setHoveredCat(null);
-    }, 500); // Small delay to allow moving to dropdown
+    }, 500); 
     setHoverTimeout(timeout);
   };
 
@@ -137,19 +137,12 @@ const Header = () => {
     };
   }, [mobileMenuOpen]);
 
-  // Cleanup timeout on unmount
-  useEffect(() => {
-    return () => {
-      if (hoverTimeout) {
-        clearTimeout(hoverTimeout);
-      }
-    };
-  }, [hoverTimeout]);
+
 
   return (
     <header className="w-full">
       <div
-        className={`fixed top-0 left-0 w-full z-50 transition-transform duration-1000 ${
+        className={`fixed top-0 left-0 w-full z-[999] transition-transform duration-1000 ${
           isVisible ? "translate-y-0" : "-translate-y-full"
         }`}
       >
@@ -212,7 +205,7 @@ const Header = () => {
                       className="relative"
                     >
                       <Link
-                        to={`/category/${mainCat.slug}`}
+                        to={`/category/${mainCat.id}`}
                         className={`hover:text-gray-600 px-2 py-1 block ${
                           ["Men", "WOmen", "Kids"].includes(mainCat.slug)
                             ? "font-bold"
@@ -226,23 +219,23 @@ const Header = () => {
                     {/* Desktop Mega Menu */}
                     {hoveredCat === mainCat.id && mainCat.children?.length > 0 && (
                       <div 
-                        className="fixed left-0 top-full w-full bg-white shadow-lg p-8 z-30 grid grid-cols-6 gap-6 border-t"
+                        className="fixed left-0 top-full w-full bg-white shadow-lg p-8 z-50 grid grid-cols-6 gap-6 border-t"
                         onMouseEnter={handleDropdownMouseEnter}
                         onMouseLeave={handleDropdownMouseLeave}
                       >
                         {mainCat.children.map((subCat) => (
                           <div key={subCat.id}>
                             <Link
-                              to={`/subcategory/${subCat.slug}`}
-                              className="block font-medium text-sm mb-3 hover:underline"
+                              to={`/category/${subCat.id}` }
+                              className="block font-bold text-sm mb-3 hover:underline"
                             >
                               {subCat.name}
                             </Link>
-                            <div className="flex flex-col gap-2">
+                            <div className="flex flex-col capitalize  gap-2">
                               {subCat.children?.map((child) => (
                                 <Link
                                   key={child.id}
-                                  to={`/subcategory/${child.slug}`}
+                                  to={`/category/${child.id}`}
                                   className="text-sm hover:underline text-gray-600"
                                 >
                                   {child.name}
@@ -267,8 +260,8 @@ const Header = () => {
                   className="w-full pl-4 pr-10 py-2 bg-gray-200 text-black outline-none text-sm rounded"
                 />
               </div>
-              <Link to="/login"><User className="w-6 h-6" /></Link>
-              <Link to="/liked"><Heart className="w-6 h-6" /></Link>
+              <Link to="/Signin"><User className="w-6 h-6" /></Link>
+              <Link to="/wishlist"><Heart className="w-6 h-6" /></Link>
               <Link to="/basket" className="relative">
                 <ShoppingCart className="w-6 h-6" />
                 {basketCount > 0 && (
@@ -286,7 +279,7 @@ const Header = () => {
             <div className="flex items-center space-x-4">
               {/* 1. Menu burger */}
               <button 
-                className="z-50"
+                className="z-[1002]"
                 onClick={toggleMobileMenu}
               >
                 <Menu className="w-8 h-8" />
@@ -308,7 +301,7 @@ const Header = () => {
             {/* Sağ tərəf - Login, Search, Shopping Cart (ekranın sağından 6px, aralarında 6px gap) */}
             <div className="flex items-center space-x-4 ml-auto pr-1.5">
               {/* 4. Login */}
-              <Link to="/login">
+              <Link to="/Signin">
                 <User className="w-7 h-7" />
               </Link>
 
@@ -333,14 +326,14 @@ const Header = () => {
 
       {/* Mobile Menu Overlay - TAM EKRAN */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-white w-screen h-screen">
+        <div className="fixed inset-0 z-[1001] bg-white w-screen h-screen">
           <div className="flex flex-col h-full w-full">
             {/* Mobile Menu Header */}
             <div className="flex items-center justify-between p-4 border-b bg-white">
               <Link to="/" className="flex justify-center items-center" onClick={() => setMobileMenuOpen(false)}>
                 <img src="/logo.png" alt="Adidas Logo" className="h-10 w-auto" />
               </Link>
-              <button onClick={toggleMobileMenu} className="z-50">
+              <button onClick={toggleMobileMenu} className="z-[1002]">
                 <X className="w-6 h-6" />
               </button>
             </div>
@@ -431,14 +424,15 @@ const Header = () => {
                               {expandedCategories[`sub_${subCat.id}`] && subCat.children?.length > 0 && (
                                 <div className="ml-4">
                                   {subCat.children.map((child) => (
-                                    <a
+                                    <Link
                                       key={child.id}
-                                      href={`/subcategory/${child.slug}`}
+                                      
+                                      to={`/category/${child.id}`}
                                       className="block text-sm text-gray-600 mb-2 hover:text-black py-1"
                                       onClick={() => setMobileMenuOpen(false)}
                                     >
                                       {child.name}
-                                    </a>
+                                    </Link>
                                   ))}
                                 </div>
                               )}
@@ -477,7 +471,7 @@ const Header = () => {
       {/* Popup */}
       {showPopup && (
         <div
-          className={`fixed top-0 left-0 w-full bg-white border-t border-gray-300 px-3 py-32 flex flex-col md:flex-row justify-around z-30 shadow-lg transform transition-all duration-500 ease-in-out ${
+          className={`fixed top-0 left-0 w-full bg-white border-t border-gray-300 px-3 py-32 flex flex-col md:flex-row justify-around z-[1000] shadow-lg transform transition-all duration-500 ease-in-out ${
             animatePopup
               ? "opacity-100 translate-y-0"
               : "opacity-0 -translate-y-10 pointer-events-none"

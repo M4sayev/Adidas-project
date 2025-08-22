@@ -7,21 +7,28 @@ import UserLayout from "../layout/UserLayout";
 import AdminLayout from "../layout/AdminLayout";
 import Dashboard from "../component/Admin/user/Dashboard";
 import Product from "../pages/Admin/Product";
-import Men from "../pages/User/Men";
 import Basket from "../component/User/Basket";
 import ProductDetail from "../component/User/ProductDetail";
+import Wishlist from "../component/User/Wishlist";
+import ProductList from "../pages/User/ProductList";
+import SignIn from "../pages/Singin";
+import SignUp from "../pages/Signup";
 
 export const route = createBrowserRouter(
   createRoutesFromElements(
     <>
       {/* Login səhifəsi */}
       <Route path="/login" element={<Login />} />
+      <Route path="/Signin" element={<SignIn />} />
+      <Route path="/Signup" element={<SignUp />} />
+      
 
-      {/* İstifadəçi layoutu (Header + Footer sabit qalır) */}
+     
       <Route path="/" element={<UserLayout />}>
         <Route index element={<App />} />
-        <Route path="category/men" element={<Men />} /> {/* Men səhifəsi */}
-        <Route path="/basket" element={<Basket />} /> {/* Men səhifəsi */}
+        <Route path="/category/:id" element={<ProductList/>}/>
+        <Route path="/basket" element={<Basket />} /> 
+        <Route path="/wishlist" element={<Wishlist/>}/>
         <Route path="product/:id" element={<ProductDetail />} />
       </Route>
 
