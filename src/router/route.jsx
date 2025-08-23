@@ -29,7 +29,7 @@ export const route = createBrowserRouter(
         <Route path="/category/:id" element={<ProductList/>}/>
         <Route path="/basket" element={<Basket />} /> 
         <Route path="/wishlist" element={<Wishlist/>}/>
-        <Route path="product/:id" element={<ProductDetail />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
       </Route>
 
       {/* Admin panel */}

@@ -1,18 +1,18 @@
 @font-face {
   font-family: 'AdihausDIN';
-  src: url('./assets/fonts/adihausdin_cn.tff') format('woff2');
+  src: url('./assets/fonts/adihausdin_cn.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'AdihausDIN';
-  src: url('./assets/fonts/adihausdin_bold.otf') format('woff2');
+  src: url('./assets/fonts/adihausdin_bold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
 }
-  
-/* Bütün sayt üçün default font */
+
+/* Default font */
 * {
   font-family: 'AdihausDIN', sans-serif;
 }

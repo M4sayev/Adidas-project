@@ -10,7 +10,7 @@ const Home = () => {
           <img
             src="/WOmen.avif"
             alt="Banner"
-            className="w-full h-full object-center lg:object:cover object-right md:object-center"
+            className="w-full h-full object-cover lg:object:cover object-right md:object-cover"
           />
           
           {/* Overlay content */}

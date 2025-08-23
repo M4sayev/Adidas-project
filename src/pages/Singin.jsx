@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signin } from "./UserAuth";
+import { toast } from "react-toastify";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -16,11 +17,12 @@ const SignIn = () => {
       const { data } = await signin(form);
       localStorage.setItem("token", data.token);
       navigate("/");
+      toast.success("Daxil oldunuz ✅");
     } catch (err) {
       if (err.response?.status === 404) {
         navigate("/signup");
       } else {
-        alert("Email və ya şifrə yanlışdır.");
+        toast.error("Email və ya şifrə yanlışdır.");
       }
     }
     setLoading(false);

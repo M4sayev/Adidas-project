@@ -22,11 +22,11 @@ const SignUp = () => {
     setLoading(true);
     try {
       await signup(form);
-      alert("Hesab yaradıldı! İndi daxil olun.");
+      toast.success("Hesab yaradıldı! İndi daxil olun.");
       navigate("/signin");
     } catch (err) {
       console.error(err);
-      alert("Qeydiyyat zamanı xəta baş verdi.");
+      toast.error("Qeydiyyat zamanı xəta baş verdi.");
     }
     setLoading(false);
   };

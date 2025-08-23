@@ -22,25 +22,6 @@ const Header = () => {
       .catch((err) => console.error("Category fetch error:", err));
   }, []);
 
-  // 📌 Basket Count API
-  useEffect(() => {
-    fetch("http://localhost:3000/api/basket")
-      .then((res) => res.json())
-      .then((data) => {
-        
-        if (Array.isArray(data.products)) {
-          const total = data.products.reduce(
-            (sum, item) => sum + item.quantity,
-            0
-          );
-          setBasketCount(total);
-        } else {
-          setBasketCount(0);
-        }
-      })
-      .catch((err) => console.error("Basket fetch error:", err));
-  }, []);
-
   const rotatingMessages = [
     `FAST, FREE DELIVERY WITH PRIME`,
     `FREE STANDARD SHIPPING WITH ADICLUB`,

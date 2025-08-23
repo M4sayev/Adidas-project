@@ -8,7 +8,6 @@ import AsFooter from "./AsFooter";
 import Banner from "./Banner";
 import Footer from "../../component/User/Footer";
 
-
 const ProductList = () => {
   const { id } = useParams();
   const idnum = Number(id);
@@ -37,7 +36,6 @@ const ProductList = () => {
         const catRes = await axios.get("/api/category");
         const selectedCat = findCategoryById(catRes.data, idnum);
         setCategory(selectedCat || null);
-        console.log(catRes.data);
 
         if (selectedCat) {
           // Product-ları fetch et
@@ -68,29 +66,21 @@ const ProductList = () => {
             <img
               src={`/${category.slug}.avif`}
               alt="Banner"
-              className="w-full h-full object-center object-right md:object-center"
+              className="w-full h-full object-cover object-right md:object-center"
             />
             <div className="absolute inset-0 flex flex-col justify-end items-start px-6 md:px-12 lg:px-20 pb-10">
-              {/* ✅ yazılar şəkilin aşağısında olacaq */}
-
-              <h2 className=" md:text-lg lg:text-xl font-extrabold px-1 py-1 bg-white text-black mb-2">
+              <h2 className="md:text-lg lg:text-xl font-extrabold px-1 py-1 bg-white text-black mb-2">
                 SUPERSTAR
               </h2>
-
-              {/* Description */}
               <p className="text-xs md:text-sm lg:text-base px-2 py-1 bg-white text-black mb-6">
                 Because icons wear the original icon.
               </p>
-
               <div className="flex flex-row gap-3">
-              
-                <Link 
-
-                  key={category.slug}
-                  to={`/${category}`}
+                <Link
+                  to={`/category/${category.id}`} // burada object yox, id istifadə edilir
                   className="flex items-center border px-4 py-3 bg-white text-black font-bold text-xs md:text-sm lg:text-base group hover:bg-gray-100 transition-colors"
                 >
-                   SHOP NOW
+                  SHOP NOW
                   <svg
                     className="ml-2 w-5 h-5 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform"
                     viewBox="0 0 32 32"
@@ -105,10 +95,7 @@ const ProductList = () => {
                     />
                   </svg>
                 </Link>
-             
-            </div>
-
-
+              </div>
             </div>
           </div>
         )}
@@ -121,9 +108,10 @@ const ProductList = () => {
           <p>No products found in this category.</p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {products.map((prod) => (
-              <div
+            {products.map((prod,i) => (
+              <Link
                 key={prod.id}
+                to={`/product/${prod.id}`} 
                 className="border rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col"
               >
                 {prod.image && (
@@ -136,19 +124,17 @@ const ProductList = () => {
                 <h3 className="text-lg font-semibold">{prod.name}</h3>
                 <p className="text-gray-600 mb-2">{prod.description}</p>
                 <span className="font-bold text-blue-600">${prod.price}</span>
-              </div>
+              </Link>
             ))}
           </div>
         )}
       </div>
 
-        <CategoryOption/>
-        <Teaser/>
-        <TopPicks/>
-        <Banner/>
-        <AsFooter/>
-
-
+      <CategoryOption />
+      <Teaser />
+      <TopPicks />
+      <Banner />
+      <AsFooter />
     </>
   );
 };
