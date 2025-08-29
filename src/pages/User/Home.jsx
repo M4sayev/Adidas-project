@@ -10,12 +10,12 @@ const Home = () => {
           <img
             src="/WOmen.avif"
             alt="Banner"
-            className="w-full h-full object-cover lg:object:cover object-right md:object-cover"
+            className="w-full h-full object-cover lg:object-cover object-right md:object-cover"
           />
           
           {/* Overlay content */}
           <div className="absolute inset-0 flex flex-col justify-end items-start px-6 md:px-12 lg:px-20 pb-10">
-            {/* ✅ yazılar şəkilin aşağısında olacaq */}
+           
             
             <h2 className="text-base md:text-lg lg:text-xl font-bold px-2 py-1 bg-white text-black mb-2">
               SUPERSTAR

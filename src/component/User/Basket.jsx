@@ -132,15 +132,15 @@ const Basket = () => {
       {/* Auth Modal */}
       {showAuthModal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md transform transition-all">
+          <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-2xl w-full max-w-md transform transition-all">
             <div className="text-center mb-6">
               <div className="mx-auto w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
                 <ShoppingCart className="w-8 h-8 text-indigo-600" />
               </div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-2">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
                 Hesabınız yoxdur?
               </h2>
-              <p className="text-gray-600">
+              <p className="text-sm sm:text-base text-gray-600">
                 Basketdən istifadə etmək üçün daxil olun.
               </p>
             </div>
@@ -168,19 +168,19 @@ const Basket = () => {
       {!showAuthModal && (
         <div className="container mx-auto px-4 py-8 max-w-4xl">
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-800 flex items-center space-x-3">
-              <ShoppingCart className="w-8 h-8 text-indigo-600" />
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 flex items-center space-x-3">
+              <ShoppingCart className="w-6 h-6 sm:w-8 sm:h-8 text-indigo-600" />
               <span>Sizin Basket</span>
             </h1>
           </div>
 
           {basket.length === 0 || !basket[0] || !basket[0].items || basket[0].items.length === 0 ? (
-            <div className="bg-white rounded-2xl shadow-lg p-12 text-center">
-              <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <ShoppingCart className="w-12 h-12 text-gray-400" />
+            <div className="bg-white rounded-2xl shadow-lg p-8 sm:p-12 text-center">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <ShoppingCart className="w-10 h-10 sm:w-12 sm:h-12 text-gray-400" />
               </div>
-              <h2 className="text-xl font-semibold text-gray-600 mb-2">Basketiniz boşdur</h2>
-              <p className="text-gray-500">Alış-verişə başlamaq üçün məhsullar əlavə edin</p>
+              <h2 className="text-lg sm:text-xl font-semibold text-gray-600 mb-2">Basketiniz boşdur</h2>
+              <p className="text-sm sm:text-base text-gray-500">Alış-verişə başlamaq üçün məhsullar əlavə edin</p>
             </div>
           ) : (
             <div className="space-y-6">
@@ -190,28 +190,37 @@ const Basket = () => {
                   {basket[0].items.map((item, index) => {
                     const isUpdating = updatingItems.has(item.product.id);
                     return (
-                      <div key={index} className="p-6 hover:bg-gray-50 transition-colors duration-200">
-                        <div className="flex items-center justify-between">
-                          <div className="flex-1">
-                            <h3 className="font-semibold text-lg text-gray-800 mb-2">
-                              {item.product?.name}
-                            </h3>
-                            <div className="flex flex-wrap gap-4 text-sm text-gray-600 mb-3">
-                              <span className="bg-gray-100 px-3 py-1 rounded-full">
-                                Rəng: {item.color}
-                              </span>
-                              <span className="bg-gray-100 px-3 py-1 rounded-full">
-                                Ölçü: {item.size}
-                              </span>
-                              {item.product?.price && (
-                                <span className="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full font-medium">
-                                  {item.product.price} AZN
-                                </span>
-                              )}
+                      <div key={index} className="p-4 sm:p-6 hover:bg-gray-50 transition-colors duration-200">
+                        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                          <div className="flex-1 w-full">
+                            <div className="flex items-start gap-3 sm:gap-4 mb-3 lg:mb-0">
+                              <img
+                                src={item.product?.images[0].url || "/placeholder.jpg"}
+                                alt={item.product?.name}
+                                className="w-20 h-20 sm:w-24 sm:h-24 lg:w-48 lg:h-48 xl:w-52 xl:h-52 object-cover rounded-md flex-shrink-0"
+                              />
+                              <div className="flex-1 min-w-0">
+                                <h3 className="font-semibold text-base sm:text-lg text-gray-800 mb-2 line-clamp-2">
+                                  {item.product?.name}
+                                </h3>
+                                <div className="flex flex-wrap gap-2 text-xs sm:text-sm text-gray-600 mb-3 lg:mb-0">
+                                  <span className="bg-gray-100 px-2 sm:px-3 py-1 rounded-full">
+                                    Rəng: {item.color}
+                                  </span>
+                                  <span className="bg-gray-100 px-2 sm:px-3 py-1 rounded-full">
+                                    Ölçü: {item.size}
+                                  </span>
+                                  {item.product?.price && (
+                                    <span className="bg-indigo-100 text-indigo-700 px-2 sm:px-3 py-1 rounded-full font-medium">
+                                      {item.product.price} AZN
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
                             </div>
                           </div>
 
-                          <div className="flex items-center space-x-4">
+                          <div className="flex items-center justify-between lg:justify-end w-full lg:w-auto gap-3 sm:gap-4 lg:space-x-4">
                             {/* Quantity Controls */}
                             <div className="flex items-center bg-gray-100 rounded-xl overflow-hidden">
                               <button
@@ -219,9 +228,9 @@ const Basket = () => {
                                 disabled={isUpdating || (item.quantity || 1) <= 1}
                                 className="p-2 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                               >
-                                <Minus className="w-4 h-4" />
+                                <Minus className="w-3 h-3 sm:w-4 sm:h-4" />
                               </button>
-                              <span className="px-4 py-2 min-w-[3rem] text-center font-medium bg-white">
+                              <span className="px-3 sm:px-4 py-2 min-w-[2.5rem] sm:min-w-[3rem] text-center font-medium bg-white text-sm sm:text-base">
                                 {isUpdating ? "..." : (item.quantity || 1)}
                               </span>
                               <button
@@ -229,14 +238,14 @@ const Basket = () => {
                                 disabled={isUpdating}
                                 className="p-2 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                               >
-                                <Plus className="w-4 h-4" />
+                                <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
                               </button>
                             </div>
 
                             {/* Subtotal */}
                             {item.product?.price && (
-                              <div className="text-right min-w-[100px]">
-                                <p className="font-bold text-lg text-gray-800">
+                              <div className="text-right min-w-[80px] sm:min-w-[100px]">
+                                <p className="font-bold text-base sm:text-lg text-gray-800">
                                   {(item.product.price * (item.quantity || 1)).toFixed(2)} AZN
                                 </p>
                               </div>
@@ -245,10 +254,10 @@ const Basket = () => {
                             {/* Remove Button */}
                             <button
                               onClick={() => removeItem(item.id)}
-                              className="p-2 text-red-500 hover:bg-red-50 rounded-xl transition-colors duration-200"
+                              className="p-2 text-red-500 hover:bg-red-50 rounded-xl transition-colors duration-200 flex-shrink-0"
                               title="Məhsulu sil"
                             >
-                              <Trash2 className="w-5 h-5" />
+                              <Trash2 className="w-4 h-4 sm:w-5 sm:h-5" />
                             </button>
                           </div>
                         </div>
@@ -260,14 +269,14 @@ const Basket = () => {
 
               {/* Total */}
               {basket[0] && basket[0].items && basket[0].items.length > 0 && (
-                <div className="bg-white rounded-2xl shadow-lg p-6">
-                  <div className="flex justify-between items-center mb-4">
-                    <h2 className="text-xl font-semibold text-gray-800">Ümumi məbləğ</h2>
-                    <p className="text-2xl font-bold text-indigo-600">
+                <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6">
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4 mb-4">
+                    <h2 className="text-lg sm:text-xl font-semibold text-gray-800">Ümumi məbləğ</h2>
+                    <p className="text-xl sm:text-2xl font-bold text-indigo-600">
                       {calculateTotal().toFixed(2)} AZN
                     </p>
                   </div>
-                  <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-4 px-6 rounded-xl font-semibold text-lg transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02]">
+                  <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 sm:py-4 px-4 sm:px-6 rounded-xl font-semibold text-base sm:text-lg transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98]">
                     Sifarişi tamamla
                   </button>
                 </div>

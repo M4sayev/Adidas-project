@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { signup } from "./UserAuth";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const navigate = useNavigate();

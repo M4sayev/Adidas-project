@@ -21,6 +21,7 @@ const Product = () => {
   useEffect(() => {
     if (!open) {
       refetch();
+      console.log(data);
     }
   }, [open, refetch, data]);
 
@@ -79,7 +80,7 @@ const Product = () => {
                     <p className="font-semibold">{item.name}</p>
                     <p className="text-gray-300">{item.price} AZN</p>
                     <p className="text-gray-400 text-sm">
-                      Kateqoriya: {item.categoryName || "Yoxdur"}
+                      Kateqoriya: {item.category.name || "Yoxdur"}
                     </p>
                   </div>
                   <button

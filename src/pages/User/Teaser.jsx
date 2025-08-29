@@ -6,7 +6,7 @@ const products = [
     title: "SAMBA",
     description: "The cheetah print Samba is back.",
     image: "/samba.avif",
-    link: "/category/146", // klikləyəndə gedəcəyi səhifə
+    link: "/category/146", 
   },
   {
     title: "TEAMGEIST",
@@ -30,7 +30,7 @@ const products = [
 
 const Teaser = () => {
   return (
-    <div className="flex flex-wrap gap-6 justify-center pt-16 pb-6 px-10">
+    <div className="flex flex-wrap  justify-center pt-16 pb-6  px-10">
       {products.map((product, index) => (
         <Link
           key={index}

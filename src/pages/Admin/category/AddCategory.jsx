@@ -12,10 +12,10 @@ const AddCategory = ({ setOpen }) => {
 
   useEffect(() => {
     if (categories) {
-      console.log('Categories data:', categories)
-      console.log('Categories array length:', categories.length)
+      console.log('Kategori datasidi data', categories)
+      console.log('Kategori array uzunluğu', categories.length)
       categories.forEach((cat, index) => {
-        console.log(`Category ${index}:`, {
+        console.log(`Kateqoriyanin ${index}`, {
           name: cat.name,
           id: cat._id || cat.id,
           parentId: cat.parentId,

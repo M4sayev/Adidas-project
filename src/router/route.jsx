@@ -13,6 +13,7 @@ import Wishlist from "../component/User/Wishlist";
 import ProductList from "../pages/User/ProductList";
 import SignIn from "../pages/Singin";
 import SignUp from "../pages/Signup";
+import CategoryOption from "../pages/User/CategoryOption";
 
 export const route = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +31,7 @@ export const route = createBrowserRouter(
         <Route path="/basket" element={<Basket />} /> 
         <Route path="/wishlist" element={<Wishlist/>}/>
         <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/category/:id" element={<CategoryOption />} />
       </Route>
 
       {/* Admin panel */}
