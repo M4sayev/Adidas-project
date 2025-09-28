@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-function MobileNav({
-  categories,
-  expandedCategories,
-  toggleCategory,
-  setMobileMenuOpen,
-}) {
+function MobileNav({ categories, setMobileMenuOpen }) {
+  const [expandedCategories, setExpandedCategories] = useState({});
+  const toggleCategory = (categoryId) => {
+    setExpandedCategories((prev) => ({
+      ...prev,
+      [categoryId]: !prev[categoryId],
+    }));
+  };
   return (
     <div className="flex-1 overflow-y-auto bg-white w-full">
       <nav className="p-4 w-full">

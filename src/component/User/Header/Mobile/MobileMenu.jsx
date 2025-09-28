@@ -8,16 +8,9 @@ function MobileMenu({
   toggleMobileMenu,
   setMobileMenuOpen,
   categories,
-  expandedCategories,
-  toggleCategory,
-  mobileSearchQuery,
-  setMobileSearchQuery,
-  mobileSearchResults,
-  setMobileSearchResults,
   allProducts,
   setSearchQuery,
   navigate,
-  handleMobileSearchSubmit,
 }) {
   return (
     <div className="fixed inset-0 z-[1001] bg-white w-screen h-screen">
@@ -30,22 +23,15 @@ function MobileMenu({
 
         {/* Mobile Search */}
         <MobileSearch
-          mobileSearchQuery={mobileSearchQuery}
-          setMobileSearchQuery={setMobileSearchQuery}
-          mobileSearchResults={mobileSearchResults}
-          setMobileSearchResults={setMobileSearchResults}
           allProducts={allProducts}
           setSearchQuery={setSearchQuery}
           navigate={navigate}
           setMobileMenuOpen={setMobileMenuOpen}
-          handleMobileSearchSubmit={handleMobileSearchSubmit}
         />
 
         {/* Mobile Navigation - TAM ƏHATƏ */}
         <MobileNav
           categories={categories}
-          expandedCategories={expandedCategories}
-          toggleCategory={toggleCategory}
           setMobileMenuOpen={setMobileMenuOpen}
         />
 

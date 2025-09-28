@@ -1,17 +1,40 @@
 import { Search } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 
 function MobileSearch({
-  mobileSearchQuery,
-  setMobileSearchQuery,
-  mobileSearchResults,
-  setMobileSearchResults,
   allProducts,
   setSearchQuery,
   navigate,
   setMobileMenuOpen,
-  handleMobileSearchSubmit,
 }) {
+  const [mobileSearchQuery, setMobileSearchQuery] = useState("");
+  const [mobileSearchResults, setMobileSearchResults] = useState([]);
+
+  const handleMobileSearchChange = (e) => {
+    const value = e.target.value;
+    setMobileSearchQuery(value);
+
+    if (!value.trim()) {
+      setMobileSearchResults([]);
+      return;
+    }
+
+    // filter allProducts by name
+    const results = allProducts.filter((product) =>
+      product.name.toLowerCase().includes(value.toLowerCase())
+    );
+
+    setMobileSearchResults(results.slice(0, 8));
+  };
+
+  const handleMobileSearchSubmit = (e) => {
+    e.preventDefault();
+    if (mobileSearchResults.length > 0) {
+      navigate(`/product/${mobileSearchResults[0].id}`);
+      setMobileMenuOpen(false); // menunu bağla
+    }
+  };
+
   return (
     <div className="p-4 border-b bg-white">
       {/* Mobile Search */}

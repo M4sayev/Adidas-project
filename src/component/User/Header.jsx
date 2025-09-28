@@ -18,11 +18,9 @@ const Header = () => {
   const [animatePopup, setAnimatePopup] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [categories, setCategories] = useState([]);
-  const [hoveredCat, setHoveredCat] = useState(null);
+
   const [basketCount, setBasketCount] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [expandedCategories, setExpandedCategories] = useState({});
-  const [hoverTimeout, setHoverTimeout] = useState(null);
 
   // 🔍 Search states
 
@@ -30,8 +28,7 @@ const Header = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [showSearchDropdown, setShowSearchDropdown] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
-  const [mobileSearchQuery, setMobileSearchQuery] = useState("");
-  const [mobileSearchResults, setMobileSearchResults] = useState([]);
+
   const [allProducts, setAllProducts] = useState([]); // bütün məhsullar
 
   // 📌 Kategoriyalar API
@@ -82,31 +79,6 @@ const Header = () => {
 
     return () => clearTimeout(delayedSearch);
   }, [searchQuery]);
-
-  const handleMobileSearchChange = (e) => {
-    const value = e.target.value;
-    setMobileSearchQuery(value);
-
-    if (!value.trim()) {
-      setMobileSearchResults([]);
-      return;
-    }
-
-    // filter allProducts by name
-    const results = allProducts.filter((product) =>
-      product.name.toLowerCase().includes(value.toLowerCase())
-    );
-
-    setMobileSearchResults(results.slice(0, 8));
-  };
-
-  const handleMobileSearchSubmit = (e) => {
-    e.preventDefault();
-    if (mobileSearchResults.length > 0) {
-      navigate(`/product/${mobileSearchResults[0].id}`);
-      setMobileMenuOpen(false); // menunu bağla
-    }
-  };
 
   // Handle search input change
   const handleSearchChange = (e) => {
@@ -185,42 +157,6 @@ const Header = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
-  const toggleCategory = (categoryId) => {
-    setExpandedCategories((prev) => ({
-      ...prev,
-      [categoryId]: !prev[categoryId],
-    }));
-  };
-
-  const handleCategoryMouseEnter = (categoryId) => {
-    if (hoverTimeout) {
-      clearTimeout(hoverTimeout);
-      setHoverTimeout(null);
-    }
-    setHoveredCat(categoryId);
-  };
-
-  const handleCategoryMouseLeave = () => {
-    const timeout = setTimeout(() => {
-      setHoveredCat(null);
-    }, 500);
-    setHoverTimeout(timeout);
-  };
-
-  const handleDropdownMouseEnter = () => {
-    if (hoverTimeout) {
-      clearTimeout(hoverTimeout);
-      setHoverTimeout(null);
-    }
-  };
-
-  const handleDropdownMouseLeave = () => {
-    const timeout = setTimeout(() => {
-      setHoveredCat(null);
-    }, 100);
-    setHoverTimeout(timeout);
-  };
-
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -259,11 +195,6 @@ const Header = () => {
 
         {/* Main Header */}
         <DesktopNav
-          handleCategoryMouseEnter={handleCategoryMouseEnter}
-          handleCategoryMouseLeave={handleCategoryMouseLeave}
-          hoveredCat={hoveredCat}
-          handleDropdownMouseEnter={handleDropdownMouseEnter}
-          handleDropdownMouseLeave={handleDropdownMouseLeave}
           categories={categories}
           basketCount={basketCount}
           searchQuery={searchQuery}
@@ -285,16 +216,9 @@ const Header = () => {
           toggleMobileMenu={toggleMobileMenu}
           setMobileMenuOpen={setMobileMenuOpen}
           categories={categories}
-          expandedCategories={expandedCategories}
-          toggleCategory={toggleCategory}
-          mobileSearchQuery={mobileSearchQuery}
-          setMobileSearchQuery={setMobileSearchQuery}
-          mobileSearchResults={mobileSearchResults}
-          setMobileSearchResults={setMobileSearchResults}
           allProducts={allProducts}
           setSearchQuery={setSearchQuery}
           navigate={navigate}
-          handleMobileSearchSubmit={handleMobileSearchSubmit}
         />
       )}
 

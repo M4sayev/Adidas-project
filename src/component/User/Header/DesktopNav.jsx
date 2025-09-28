@@ -1,15 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, ShoppingCart, User, Search, X, Heart } from "lucide-react";
 
 function DesktopNav({
   categories,
   basketCount,
-  handleCategoryMouseEnter,
-  handleCategoryMouseLeave,
-  hoveredCat,
-  handleDropdownMouseEnter,
-  handleDropdownMouseLeave,
   searchQuery,
   handleSearchChange,
   handleSearchSubmit,
@@ -21,6 +16,37 @@ function DesktopNav({
   navigate,
   toggleMobileMenu,
 }) {
+  const [hoveredCat, setHoveredCat] = useState(null);
+  const [hoverTimeout, setHoverTimeout] = useState(null);
+
+  const handleCategoryMouseEnter = (categoryId) => {
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout);
+      setHoverTimeout(null);
+    }
+    setHoveredCat(categoryId);
+  };
+
+  const handleCategoryMouseLeave = () => {
+    const timeout = setTimeout(() => {
+      setHoveredCat(null);
+    }, 500);
+    setHoverTimeout(timeout);
+  };
+
+  const handleDropdownMouseEnter = () => {
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout);
+      setHoverTimeout(null);
+    }
+  };
+
+  const handleDropdownMouseLeave = () => {
+    const timeout = setTimeout(() => {
+      setHoveredCat(null);
+    }, 100);
+    setHoverTimeout(timeout);
+  };
   return (
     <div className="bg-white py-3 w-full">
       {/* Desktop Layout */}
