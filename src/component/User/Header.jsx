@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Menu, ShoppingCart, User, Search, X, Heart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import Banner from "./Header/Banner";
 import TopLinks from "./Header/TopLinks";
 import DesktopNav from "./Header/DesktopNav";
-import MobileHeader from "./Header/Mobile/MobileHeader";
-import MobileSearch from "./Header/Mobile/MobileSearch";
-import MobileNav from "./Header/Mobile/MobileNav";
-import MobileFooter from "./Header/Mobile/MobileFooter";
 import Popup from "./Header/Popup";
 import MobileMenu from "./Header/Mobile/MobileMenu";
 
